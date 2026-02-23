@@ -1,4 +1,4 @@
-# OMSCS-CS8803 Project-3: GPU Warp Scheduling
+# OMSCS-CS7295 Project-3: GPU Warp Scheduling
 In this assignment, you will have two main goals: 
 1. Introduce compute and tensor cores to simulate compute operation latencies to include execution of non-memory operations such as add and multiply.
 2. Implement different warp scheduling algorithms on a GPU simulator which will give you an 
