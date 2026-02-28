@@ -6,7 +6,8 @@
 .macsim_traces
 macsim_traces/
 micro_traces/
-macsim
+macsim/
+!src/macsim/
 log/
 
 # Compiled binaries
