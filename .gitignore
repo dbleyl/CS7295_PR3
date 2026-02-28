@@ -4,6 +4,9 @@
 
 # simulator
 .macsim_traces
+macsim_traces/
+micro_traces/
+
 # Compiled binaries
 *.o
 *.obj
