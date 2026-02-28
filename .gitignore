@@ -7,6 +7,7 @@
 macsim_traces/
 micro_traces/
 macsim
+log/
 
 # Compiled binaries
 *.o
