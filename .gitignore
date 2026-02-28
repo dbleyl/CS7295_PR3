@@ -77,6 +77,8 @@ stamp-h1
 # Python
 # ====================
 
+.python3/
+
 # Byte-compiled
 __pycache__/
 *.py[cod]
