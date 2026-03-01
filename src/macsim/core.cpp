@@ -310,10 +310,21 @@ bool core_c::schedule_warps_rr() {
     //    Schedule it
     //    Return false (don't skip cycle)
 
-    c_running_warp = c_dispatched_warps.front();
-    c_dispatched_warps.erase(c_dispatched_warps.begin());
-    return false;
+    // for (const auto& warp : c_dispatched_warps) {
+    // https://cplusplus.com/reference/vector/vector/begin/
+    for (auto it = c_dispatched_warps.begin(); it != c_dispatched_warps.end(); ++it) {
+      if (!check_dependency(*it)) {
+        c_running_warp = *it;
+        c_dispatched_warps.erase(it);
+        return false;
+      }
+    }
+
+    // c_running_warp = c_dispatched_warps.front();
+    // c_dispatched_warps.erase(c_dispatched_warps.begin());
+    // return false;
   }
+
   return true;
 }
 
@@ -323,6 +334,19 @@ bool core_c::schedule_warps_rr() {
 // Note: Only check dependencies for the SAME warp ID.
 bool core_c::check_dependency(warp_s* warp) {
     // Implement logic
+    auto warp_id = warp->warp_id;
+    auto instruction = warp->trace_buffer.front();
+
+    for (auto it = c_exec_buffer.begin();it != c_exec_buffer.end(); ++it) {
+      if (it->warp_id == warp_id) {
+        for (int i = 0; i < instruction->m_num_read_regs; i++) {
+          if (instruction->m_src[i] == it->dest_reg) {
+            return true;
+          }
+        }
+      }
+    }
+    
     return false;
 }
 
